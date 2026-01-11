@@ -1,0 +1,596 @@
+=<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amir shop - Professional Barber Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <style>
+        :root {
+            --primary-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --gold: #d4af37;
+            --gold-light: #e8c866;
+            --white: #ffffff;
+            --border-radius: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Sections */
+        .page-section {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: var(--gold);
+            color: var(--primary-black);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Booking Section */
+        .booking-section {
+            background: var(--dark-gray);
+            padding: 100px 0;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .booking-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .booking-icon {
+            font-size: 48px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .booking-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .booking-card p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Calendly Container */
+        .calendly-container {
+            background: var(--dark-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            margin: 50px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .calendly-header {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            padding: 30px;
+            text-align: center;
+        }
+
+        .calendly-header h3 {
+            color: var(--primary-black);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .calendly-header p {
+            color: var(--primary-black);
+            opacity: 0.9;
+        }
+
+        .calendly-widget {
+            height: 600px;
+            position: relative;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: var(--border-radius);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        /* Setup Instructions */
+        .setup-box {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 50px 0;
+            border: 1px solid var(--gold);
+        }
+
+        .setup-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-snippet {
+            background: var(--primary-black);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+            color: var(--gold-light);
+            overflow-x: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendly-widget {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <i class="fas fa-cut"></i> amir shop<span>'s</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="page-section">
+        <div class="hero">
+            <div class="container">
+                <h1>Classic Cuts. Real Conversations. Timeless Style.</h1>
+                <p>amir shop is where quality haircuts meet a friendly old-school atmosphere you can trust.</p>
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <a href="#booking" class="btn">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i> Call Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="page-section">
+        <div class="booking-section">
+            <div class="container">
+                <h1 style="text-align: center; font-size: 3rem; margin-bottom: 20px; color: var(--white);">
+                    Book Your Appointment
+                </h1>
+                <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 50px; font-size: 1.2rem;">
+                    Schedule your perfect haircut in just a few clicks
+                </p>
+
+                <!-- Booking Options -->
+                <div class="booking-grid">
+                    <div class="booking-card">
+                        <div class="booking-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Online Booking</h3>
+                        <p>Book instantly 24/7 through our integrated calendar system. Select your preferred time and service.</p>
+                        <button class="btn" onclick="openCalendly()" style="width: 100%;">
+                            <i class="fas fa-calendar-plus"></i> Book Now
+                        </button>
+                    </div>
+
+                    <div class="booking-card">
+                        <div class="booking-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <h3>Phone Booking</h3>
+                        <p>Prefer to talk? Call us directly and we'll help you schedule your appointment at your convenience.</p>
+                        <a href="tel:213795970432" class="btn" style="width: 100%;">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+
+                    <div class="booking-card">
+                        <div class="booking-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h3>Walk-in Welcome</h3>
+                        <p>No appointment needed! Visit us during business hours and we'll fit you in as soon as possible.</p>
+                        <a href="#contact" class="btn" style="width: 100%;">
+                            <i class="fas fa-map-marker-alt"></i> Get Directions
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Calendly Widget -->
+                <div class="calendly-container">
+                    <div class="calendly-header">
+                        <h3>Live Booking Calendar</h3>
+                        <p>See real-time availability and book instantly</p>
+                    </div>
+                    <div class="calendly-widget" id="calendlyWidget">
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--gold);">
+                            <i class="fas fa-calendar-alt" style="font-size: 48px; margin-bottom: 20px;"></i>
+                            <p>Loading booking calendar...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Secure Booking</h4>
+                        <p>Your information is encrypted and protected</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Easy Rescheduling</h4>
+                        <p>Change or cancel anytime with one click</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <h4>Smart Reminders</h4>
+                        <p>Get notifications 24h before your appointment</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>Real-time Availability</h4>
+                        <p>See up-to-date openings instantly</p>
+                    </div>
+                </div>
+
+                <!-- Setup Instructions -->
+                <div class="setup-box">
+                    <h3><i class="fas fa-wrench"></i> Easy Setup Instructions</h3>
+                    <p>To connect your own Calendly account:</p>
+                    <div class="code-snippet">
+                        <code>const CALENDLY_URL = "<span id="currentCalendlyUrl">https://calendly.com/alaabmd28/30min</span>";</code>
+                    </div>
+                    <p>Replace the URL above with your actual Calendly link. Only one change required!</p>
+                </div>
+
+                <!-- Contact Info -->
+                <div style="text-align: center; margin-top: 50px;">
+                    <h3 style="color: var(--white); margin-bottom: 20px;">Need Help?</h3>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="tel:213795970432" class="btn">
+                            <i class="fas fa-phone-alt"></i> Call: 213795970432
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Send Message
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="page-section" style="padding: 100px 0; background: var(--primary-black);">
+        <div class="container">
+            <h1 style="text-align: center; font-size: 3rem; margin-bottom: 50px; color: var(--white);">Contact Us</h1>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">Visit Our Shop</h3>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 10px;"></i>
+                        hai taleb, medea el omaria
+                    </p>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 15px;">
+                        <i class="fas fa-phone" style="color: var(--gold); margin-right: 10px;"></i>
+                        213795970432
+                    </p>
+                    <p style="color: rgba(255,255,255,0.8);">
+                        <i class="fas fa-clock" style="color: var(--gold); margin-right: 10px;"></i>
+                        Tue-Fri: 8AM-7PM, Sat-Sun: 8AM-5PM
+                    </p>
+                </div>
+                <div>
+                    <h3 style="color: var(--gold); margin-bottom: 20px;">Quick Links</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#booking" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                            <i class="fas fa-chevron-right" style="color: var(--gold); margin-right: 10px;"></i>
+                            Book Appointment
+                        </a>
+                        <a href="#services" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                            <i class="fas fa-chevron-right" style="color: var(--gold); margin-right: 10px;"></i>
+                            View Services
+                        </a>
+                        <a href="#booking" onclick="openCalendly()" style="color: rgba(255,255,255,0.8); text-decoration: none;">
+                            <i class="fas fa-chevron-right" style="color: var(--gold); margin-right: 10px;"></i>
+                            Online Booking
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ════════════════════════════════════════════════════════════
+        // 🔧 **مكان التعديل الوحيد** - ضع رابط Calendly الخاص بك هنا
+        // ════════════════════════════════════════════════════════════
+        const CALENDLY_URL = "https://calendly.com/alaabmd28/30min"; // ← ضع رابطك هنا
+        // ════════════════════════════════════════════════════════════
+
+        // عرض الرابط الحالي
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlElement = document.getElementById('currentCalendlyUrl');
+            if (urlElement && CALENDLY_URL) {
+                urlElement.textContent = CALENDLY_URL;
+            }
+            
+            // تهيئة التنقل السلس
+            initSmoothNavigation();
+            
+            // تهيئة Calendly
+            initCalendly();
+        });
+
+        // دالة لفتح Calendly
+        function openCalendly() {
+            if (CALENDLY_URL && CALENDLY_URL.includes('calendly.com')) {
+                Calendly.initPopupWidget({
+                    url: CALENDLY_URL,
+                    text: 'Book Appointment',
+                    color: '#d4af37',
+                    textColor: '#ffffff',
+                    branding: true
+                });
+            } else {
+                alert('⚠️ Please set up your Calendly URL first!\n\nGo to the JavaScript code and replace the CALENDLY_URL with your actual Calendly link.');
+            }
+        }
+
+        // تهيئة Calendly Widget
+        function initCalendly() {
+            if (CALENDLY_URL && CALENDLY_URL.includes('calendly.com')) {
+                // تحميل Calendly بعد 1 ثانية
+                setTimeout(() => {
+                    const widgetContainer = document.getElementById('calendlyWidget');
+                    if (widgetContainer) {
+                        Calendly.initInlineWidget({
+                            url: CALENDLY_URL,
+                            parentElement: widgetContainer,
+                            prefill: {},
+                            utm: {}
+                        });
+                    }
+                }, 1000);
+            }
+        }
+
+        // التنقل السلس بين الأقسام
+        function initSmoothNavigation() {
+            // الروابط في القائمة
+            const navLinks = document.querySelectorAll('nav a, a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // إذا كان الرابط يشير إلى قسم في الصفحة
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            // إخفاء كل الأقسام
+                            document.querySelectorAll('.page-section').forEach(section => {
+                                section.style.display = 'none';
+                            });
+                            
+                            // عرض القسم المطلوب
+                            targetElement.style.display = 'block';
+                            
+                            // التمرير للأعلى
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth'
+                            });
+                            
+                            // إذا كان قسم الحجز، تهيئة Calendly
+                            if (targetId === 'booking') {
+                                setTimeout(initCalendly, 500);
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // إظهار قسم الهوم بشكل افتراضي
+            document.getElementById('home').style.display = 'block';
+        }
+
+        // اختبار الرابط
+        window.testCalendly = function() {
+            if (CALENDLY_URL && CALENDLY_URL.includes('calendly.com')) {
+                window.open(CALENDLY_URL, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>
