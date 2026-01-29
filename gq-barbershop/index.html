@@ -1,0 +1,2196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GQ Barbershop - Premium Barber Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <style>
+        :root {
+            --primary-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #f5f5f5;
+            --gold: #d4af37;
+            --gold-light: #e8c866;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.25);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light-gray);
+            background-color: var(--primary-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* FIX: Removed opacity 0 and animation to prevent white page issue */
+            opacity: 1 !important; visibility: visible !important; display: block !important;
+            display: block !important;
+        }
+
+        /* Removed bodyFadeIn keyframes to ensure content is always visible */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.05);
+            transform: translateY(-100%);
+            animation: headerSlideIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards;
+        }
+
+        @keyframes headerSlideIn {
+            to { transform: translateY(0); }
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: logoFadeIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.7s forwards;
+        }
+
+        @keyframes logoFadeIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .logo-line1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .logo-line2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+            transform: translateY(40px);
+            opacity: 0;
+            animation: heroContentIn 1s cubic-bezier(0.19, 1, 0.22, 1) 0.9s forwards;
+        }
+
+        @keyframes heroContentIn {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--white);
+            line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 35px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--gold-glow);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--primary-black);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .trust-badge i {
+            color: var(--gold);
+        }
+
+        /* Sticky Booking Button */
+        .sticky-booking-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--gold);
+            color: var(--primary-black);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            border: 2px solid var(--gold);
+        }
+
+        .sticky-booking-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sticky-booking-btn:hover {
+            background-color: var(--gold-light);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .sticky-booking-btn i {
+            margin-right: 8px;
+        }
+
+        /* Mobile Sticky Call Button */
+        .sticky-call-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--primary-black);
+            color: var(--gold);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            display: none;
+        }
+
+        .sticky-call-btn:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        /* Book Appointment Section */
+        .book-appointment-section {
+            padding: 100px 0;
+            background-color: var(--dark-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-appointment-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .book-appointment-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: transform 1s var(--transition), opacity 1s var(--transition);
+        }
+
+        .book-appointment-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .book-appointment-content h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .book-appointment-content h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: -10px;
+            left: 20%;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s var(--transition) 0.3s;
+        }
+
+        .book-appointment-content.visible h2::after {
+            transform: scaleX(1);
+        }
+
+        .book-appointment-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .appointment-cta {
+            margin-top: 40px;
+        }
+
+        .urgency-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--gold);
+            bottom: -10px;
+            left: 20%;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s var(--transition) 0.5s;
+        }
+
+        .section-title.visible h2::after {
+            transform: scaleX(1);
+        }
+
+        .section-title p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Why Choose Us Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--dark-gray);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.05) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:nth-child(1) { transition-delay: 0.1s; }
+        .feature-card:nth-child(2) { transition-delay: 0.2s; }
+        .feature-card:nth-child(3) { transition-delay: 0.3s; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .micro-text {
+            text-align: center;
+            margin-top: 40px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.6s, opacity 0.8s var(--transition) 0.6s;
+        }
+
+        .micro-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Page */
+        .services-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .services-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--dark-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+            position: relative;
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:nth-child(1) { transition-delay: 0.1s; }
+        .service-card:nth-child(2) { transition-delay: 0.2s; }
+        .service-card:nth-child(3) { transition-delay: 0.3s; }
+        .service-card:nth-child(4) { transition-delay: 0.4s; }
+        .service-card:nth-child(5) { transition-delay: 0.5s; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .service-icon {
+            height: 200px;
+            background-color: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .service-info {
+            padding: 30px;
+        }
+
+        .service-info h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .service-price {
+            color: var(--gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .service-info p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .price-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.6s, opacity 0.8s var(--transition) 0.6s;
+        }
+
+        .price-note.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .services-cta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.8s, opacity 0.8s var(--transition) 0.8s;
+        }
+
+        .services-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reviews Page */
+        .rating-display {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .rating-display.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rating-stars {
+            color: var(--gold);
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .rating-text {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .reviews-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .review-item {
+            flex: 0 0 100%;
+            padding: 40px;
+            text-align: center;
+            background-color: var(--dark-gray);
+            border-radius: var(--border-radius);
+            margin: 0 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .review-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .review-text {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .review-author {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .review-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .review-nav-btn {
+            background-color: var(--medium-gray);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-nav-btn:hover {
+            background-color: var(--gold);
+            color: var(--primary-black);
+            transform: scale(1.1);
+        }
+
+        /* Contact Page */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: transform 0.6s var(--transition), opacity 0.6s var(--transition);
+        }
+
+        .contact-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-item:nth-child(1) { transition-delay: 0.1s; }
+        .contact-item:nth-child(2) { transition-delay: 0.2s; }
+        .contact-item:nth-child(3) { transition-delay: 0.3s; }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--gold);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover .contact-icon {
+            background-color: var(--gold);
+            color: var(--primary-black);
+            transform: scale(1.1);
+        }
+
+        .contact-text h4 {
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .contact-text p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hours-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .hours-table td {
+            padding: 12px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hours-table td:first-child {
+            font-weight: 500;
+        }
+
+        .contact-note {
+            background-color: var(--dark-gray);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.4s, opacity 0.8s var(--transition) 0.4s;
+        }
+
+        .contact-note.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-cta {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.6s, opacity 0.8s var(--transition) 0.6s;
+        }
+
+        .contact-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 500px;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .map-container.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(20%);
+            transition: var(--transition);
+        }
+
+        .map-container:hover .map-iframe {
+            filter: grayscale(0%);
+        }
+
+        /* Booking Page */
+        .booking-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .booking-intro.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .booking-intro h2 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .booking-intro p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .booking-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .booking-info {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+        }
+
+        .booking-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .booking-info h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .booking-steps {
+            margin-bottom: 40px;
+        }
+
+        .booking-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: transform 0.6s var(--transition), opacity 0.6s var(--transition);
+        }
+
+        .booking-step.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .booking-step:nth-child(1) { transition-delay: 0.1s; }
+        .booking-step:nth-child(2) { transition-delay: 0.2s; }
+        .booking-step:nth-child(3) { transition-delay: 0.3s; }
+        .booking-step:nth-child(4) { transition-delay: 0.4s; }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gold);
+            color: var(--primary-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .booking-step:hover .step-number {
+            transform: scale(1.1);
+        }
+
+        .step-content h4 {
+            color: var(--white);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .booking-features {
+            background-color: var(--dark-gray);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.5s, opacity 0.8s var(--transition) 0.5s;
+        }
+
+        .booking-features.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .booking-features h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .booking-features ul {
+            list-style: none;
+        }
+
+        .booking-features ul li {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-features ul li i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        .booking-widget {
+            background-color: var(--dark-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: transform 0.8s var(--transition), opacity 0.8s var(--transition);
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .booking-widget.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .widget-header {
+            background-color: var(--medium-gray);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .widget-header h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .widget-body {
+            height: 580px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .booking-placeholder {
+            text-align: center;
+            padding: 40px;
+            max-width: 400px;
+        }
+
+        .booking-placeholder h4 {
+            color: var(--white);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .booking-placeholder p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .booking-cta {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s var(--transition) 0.6s, opacity 0.8s var(--transition) 0.6s;
+        }
+
+        .booking-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .booking-note {
+            color: var(--gold);
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Calendly Modal */
+        .calendly-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .calendly-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .calendly-modal-content {
+            width: 90%;
+            max-width: 1000px;
+            height: 90vh;
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .calendly-modal.active .calendly-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .calendly-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-black);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2001;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .calendly-modal-close:hover {
+            background: var(--gold);
+            color: var(--primary-black);
+            transform: rotate(90deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--gold);
+            width: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+            url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin-top: 80px;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            color: var(--white);
+            z-index: 2;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 800px;
+            margin: 20px auto 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.3s forwards;
+        }
+
+        .page-content {
+            padding: 80px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 30px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .contact-content, .booking-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1, .page-hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .booking-widget {
+                height: 600px;
+            }
+
+            .widget-body {
+                height: 480px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 15px;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--primary-black);
+                padding: 80px 20px 20px;
+                transform: translateX(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+            }
+
+            nav.active {
+                transform: translateX(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                height: 100%;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0 25px 0;
+            }
+
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1, .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons, .services-cta, .contact-cta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sticky-call-btn {
+                display: flex;
+            }
+
+            .sticky-booking-btn {
+                display: none;
+            }
+
+            .booking-widget {
+                height: 500px;
+            }
+
+            .widget-body {
+                height: 380px;
+            }
+
+            .hero, .page-hero {
+                margin-top: 70px;
+                background-attachment: scroll;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1, .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .feature-card, .service-card {
+                padding: 30px 20px;
+            }
+
+            .page-content {
+                padding: 60px 0;
+            }
+
+            .sticky-booking-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .calendly-modal-content {
+                width: 95%;
+                height: 85vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <div class="logo-text">
+                    <div class="logo-line1">GQ Barbershop</div>
+                    <div class="logo-line2">BARBER</div>
+                </div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#booking">Booking</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <a href="#booking" class="sticky-booking-btn" id="stickyBookingBtn">
+        <i class="fas fa-calendar-check"></i> Reserve Your Spot
+    </a>
+
+    <a href="tel:(720) 328-5933" class="sticky-call-btn">
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <div class="calendly-modal" id="calendlyModal">
+        <button class="calendly-modal-close" id="calendlyModalClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="calendly-modal-content">
+            <div class="calendly-inline-widget" 
+                 data-url="https://calendly.com/alaabmd28/barber-appointment-45min" 
+                 style="width:100%;height:100%;">
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="page-section">
+        <div class="hero">
+            <div class="container hero-content">
+                <h1>Experience Aurora, CO's Most Exclusive Barber Service</h1>
+                <p>Precision cuts, traditional craftsmanship, and an atmosphere of luxury. Your appointment awaits at Aurora, CO's premier grooming destination.</p>
+                <div class="cta-buttons">
+                    <a href="#booking" class="btn btn-primary" id="heroBookingBtn">
+                        <i class="fas fa-calendar-check"></i> Reserve Your Appointment
+                    </a>
+                    <a href="tel:(720) 328-5933" class="btn btn-secondary">
+                        <i class="fas fa-phone-alt"></i> Call For Availability
+                    </a>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure booking • 24-hour reminders • Limited daily appointments</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="book-appointment-section">
+            <div class="container">
+                <div class="book-appointment-content" id="bookAppointmentContent">
+                    <h2>Secure Your Appointment</h2>
+                    <p>Our master barbers maintain exclusive availability to ensure each client receives unparalleled attention. Booking in advance guarantees your preferred time.</p>
+                    
+                    <div class="appointment-cta">
+                        <button class="btn btn-primary" id="openCalendlyModal" style="padding: 18px 40px; font-size: 18px;">
+                            <i class="fas fa-calendar-check"></i> View Available Times
+                        </button>
+                    </div>
+                    <div class="urgency-badge">
+                        <i class="fas fa-clock"></i> Limited appointments remaining this week
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section" style="background-color: var(--primary-black);">
+            <div class="container">
+                <div class="section-title" id="whyChooseTitle">
+                    <h2>The GQ Barbershop Difference</h2>
+                    <p>Why discerning gentlemen choose our establishment</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card" id="feature1">
+                        <div class="feature-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3>Master Craftsmanship</h3>
+                        <p>Each cut is executed with surgical precision by our certified master barbers, trained in both traditional and contemporary techniques.</p>
+                    </div>
+                    
+                    <div class="feature-card" id="feature2">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Consistently Exquisite</h3>
+                        <p>Rated 4.6/5 by over 100 clients. We don't just meet expectations—we redefine them with every visit.</p>
+                    </div>
+                    
+                    <div class="feature-card" id="feature3">
+                        <div class="feature-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Luxury Experience</h3>
+                        <p>From the moment you enter, every detail is curated for your comfort. This isn't a haircut—it's a grooming ceremony.</p>
+                    </div>
+                </div>
+                
+                <div class="micro-text" id="microText">
+                    <p>Where exceptional skill meets uncompromising standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="page-section" style="display: none;">
+        <div class="page-hero">
+            <div class="container">
+                <h1>Signature Services</h1>
+                <p>Curated grooming experiences designed for the modern gentleman</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="services-intro" id="servicesIntro">
+                    <p>Each service is executed with precision and care, using only premium products in our Aurora, CO sanctuary.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" id="service1">
+                        <div class="service-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Master Haircut</h3>
+                            <div class="service-price">$35</div>
+                            <p>A precision cut tailored to your features and lifestyle, executed with traditional barbering techniques.</p>
+                        </div>
+                    </div>
+                    <div class="service-card" id="service2">
+                        <div class="service-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Precision Fade</h3>
+                            <div class="service-price">$40</div>
+                            <p>Expert fade techniques for a clean, modern look that's perfectly blended and razor-sharp.</p>
+                        </div>
+                    </div>
+                    <div class="service-card" id="service3">
+                        <div class="service-icon">
+                            <i class="fas fa-air-freshener"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Beard Sculpting</h3>
+                            <div class="service-price">$25</div>
+                            <p>Expert shaping and trimming to maintain your beard's architecture with exacting standards.</p>
+                        </div>
+                    </div>
+                    <div class="service-card" id="service4">
+                        <div class="service-icon">
+                            <i class="fas fa-hot-tub"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Traditional Straight Razor</h3>
+                            <div class="service-price">$30</div>
+                            <p>The ultimate grooming experience with hot towels, premium products, and traditional technique.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="price-note" id="priceNote">
+                    Walk-ins accommodated based on availability. We recommend reserving your appointment.
+                </div>
+                <div class="services-cta" id="servicesCta">
+                    <button class="btn btn-primary" id="servicesCalendlyBtn">
+                        <i class="fas fa-calendar-check"></i> Reserve Your Service
+                    </button>
+                    <a href="tel:(720) 328-5933" class="btn btn-secondary">
+                        <i class="fas fa-phone-alt"></i> Inquire About Availability
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="page-section" style="display: none;">
+        <div class="page-hero">
+            <div class="container">
+                <h1>Client Experiences</h1>
+                <p>What our discerning clients say about their GQ Barbershop experience</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="rating-display" id="ratingDisplay">
+                    <div class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="rating-text">Consistent Excellence: 4.6 / 5 from 100+ Reviews</div>
+                </div>
+                <div class="reviews-container">
+                    <div class="reviews-track" id="reviewsTrack">
+                        <div class="review-item" id="review1">
+                            <p class="review-text">"I've experienced barber shops across three states, and GQ Barbershop stands alone. The attention to detail is remarkable—they don't just cut hair, they craft appearances."</p>
+                            <p class="review-author">— Michael R., Client Since 2022</p>
+                        </div>
+                        <div class="review-item" id="review2">
+                            <p class="review-text">"The consistency is what keeps me returning. Every visit meets the same exceptional standard. It's become my monthly ritual of self-care."</p>
+                            <p class="review-author">— James L., Monthly Client</p>
+                        </div>
+                        <div class="review-item" id="review3">
+                            <p class="review-text">"As someone who values precision in all things, I appreciate their technical mastery. The fade is always perfect, the lines razor-sharp. This is craftsmanship."</p>
+                            <p class="review-author">— Robert D., Precision Client</p>
+                        </div>
+                    </div>
+                    <div class="review-nav">
+                        <button class="review-nav-btn" id="prevReview"><i class="fas fa-chevron-left"></i></button>
+                        <button class="review-nav-btn" id="nextReview"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="page-section" style="display: none;">
+        <div class="page-hero">
+            <div class="container">
+                <h1>Visit Our Aurora, CO Sanctuary</h1>
+                <p>Where luxury meets traditional barbering in the heart of Aurora, CO</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info" id="contactInfo">
+                        <h3>Experience GQ Barbershop</h3>
+                        <div class="contact-details">
+                            <div class="contact-item" id="contactItem1">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Direct Line</h4>
+                                    <p>(720) 328-5933</p>
+                                </div>
+                            </div>
+                            <div class="contact-item" id="contactItem2">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Our Address</h4>
+                                    <p>700 S Buckley Rd, Aurora, CO 80017</p>
+                                </div>
+                            </div>
+                            <div class="contact-item" id="contactItem3">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Visiting Hours</h4>
+                                    <table class="hours-table">
+                                        <tr>
+                                            <td>Monday – Friday</td>
+                                            <td>9:00 AM – 5:30 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturday</td>
+                                            <td>9:00 AM – 3:00 PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunday</td>
+                                            <td>By appointment only</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-note" id="contactNote">
+                            <p><i class="fas fa-check" style="color: var(--gold); margin-right: 8px;"></i> Valet parking available</p>
+                            <p><i class="fas fa-check" style="color: var(--gold); margin-right: 8px;"></i> Complimentary beverages</p>
+                            <p><i class="fas fa-check" style="color: var(--gold); margin-right: 8px;"></i> Discreet payment options</p>
+                        </div>
+                        <div class="contact-cta" id="contactCta">
+                            <button class="btn btn-primary" id="contactCalendlyBtn">
+                                <i class="fas fa-calendar-check"></i> Reserve Your Visit
+                            </button>
+                            <a href="https://maps.google.com" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-map-marker-alt"></i> Directions
+                            </a>
+                        </div>
+                    </div>
+                    <div class="map-container" id="mapContainer">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=https%3A%2F%2Fmaps.google.com&output=embed" 
+                            class="map-iframe"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="page-section" style="display: none;">
+        <div class="page-hero">
+            <div class="container">
+                <h1>Reserve Your Appointment</h1>
+                <p>Secure your preferred time with Aurora, CO's most exclusive barber service</p>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="booking-intro" id="bookingIntro">
+                    <h2>Exclusive Availability</h2>
+                    <p>To maintain our standards of exceptional service, we limit daily appointments. Reserve your preferred time to ensure availability.</p>
+                </div>
+                
+                <div class="booking-content">
+                    <div class="booking-info" id="bookingInfo">
+                        <h3>The GQ Barbershop Reservation Process</h3>
+                        
+                        <div class="booking-steps">
+                            <div class="booking-step" id="bookingStep1">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Select Your Experience</h4>
+                                    <p>Choose from our curated services and select your preferred date and time</p>
+                                </div>
+                            </div>
+                            
+                            <div class="booking-step" id="bookingStep2">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Secure Your Reservation</h4>
+                                    <p>Provide your details to confirm—no payment required until service</p>
+                                </div>
+                            </div>
+                            
+                            <div class="booking-step" id="bookingStep3">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Receive Confirmation</h4>
+                                    <p>Get immediate confirmation with calendar integration and 24-hour reminders</p>
+                                </div>
+                            </div>
+                            
+                            <div class="booking-step" id="bookingStep4">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Arrive & Experience</h4>
+                                    <p>Arrive 5 minutes early to enjoy our premium waiting lounge</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="booking-features" id="bookingFeatures">
+                            <h4>Exclusive Reservation Benefits</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Guaranteed time with master barbers</li>
+                                <li><i class="fas fa-check"></i> Pre-service consultation notes</li>
+                                <li><i class="fas fa-check"></i> Priority rescheduling privileges</li>
+                                <li><i class="fas fa-check"></i> Complimentary beverage selection</li>
+                                <li><i class="fas fa-check"></i> Discreet billing options</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-widget" id="bookingWidget">
+                        <div class="widget-header">
+                            <h3>Secure Your Reservation</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="booking-placeholder">
+                                <h4>Ready to Experience GQ Barbershop?</h4>
+                                <p>Click below to view our exclusive availability and reserve your appointment with Aurora, CO's premier barber service.</p>
+                                <button class="btn btn-primary" id="bookingPageCalendlyBtn" style="margin-top: 20px;">
+                                    <i class="fas fa-calendar-check"></i> View Available Times
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-cta" id="bookingCta">
+                    <p style="margin-bottom: 20px; color: rgba(255,255,255,0.8);">For immediate assistance or last-minute availability, our concierge is available.</p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="tel:(720) 328-5933" class="btn btn-secondary">
+                            <i class="fas fa-phone-alt"></i> Concierge Line
+                        </a>
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-map-marker-alt"></i> Visit Us
+                        </a>
+                    </div>
+                    <div class="booking-note">
+                        <i class="fas fa-info-circle"></i> Same-day appointments subject to availability
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="logo-text">
+                        <div class="logo-line1">GQ Barbershop</div>
+                        <div class="logo-line2">BARBER</div>
+                    </div>
+                    <p>Aurora, CO's exclusive barber service where traditional craftsmanship meets contemporary luxury.</p>
+                    <div class="footer-social">
+                        <a href="#" style="color: var(--gold); margin-right: 15px; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: var(--gold); margin-right: 15px; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: var(--gold); font-size: 20px;"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Navigate</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#booking">Reservations</a></li>
+                        <li><a href="#reviews">Experiences</a></li>
+                        <li><a href="#contact">Visit Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact & Hours</h3>
+                    <p><i class="fas fa-phone-alt"></i> (720) 328-5933</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 700 S Buckley Rd, Aurora, CO 80017</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-5:30PM</p>
+                    <p><i class="fas fa-clock"></i> Saturday: 9AM-3PM</p>
+                    <p><i class="fas fa-clock"></i> Sunday: By Appointment</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 GQ Barbershop. All rights reserved. | Aurora, CO's Exclusive Barber Experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        const stickyBookingBtn = document.getElementById('stickyBookingBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Show sticky booking button after scrolling past hero
+            if (window.scrollY > 500) {
+                stickyBookingBtn.classList.add('visible');
+            } else {
+                stickyBookingBtn.classList.remove('visible');
+            }
+        });
+
+        // Navigation between pages
+        const navLinks = document.querySelectorAll('nav a, .footer-links a, .sticky-booking-btn');
+        const pageSections = document.querySelectorAll('.page-section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Get target page
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // Update active nav link
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Hide all pages
+                    pageSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show target page
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        
+                        // Scroll to top of page
+                        window.scrollTo(0, 0);
+
+                        // Trigger animations for new page
+                        setTimeout(() => {
+                            animateOnScroll();
+                        }, 100);
+
+                        // Update reviews carousel if needed
+                        if (targetId === 'reviews') {
+                            setTimeout(updateReviewsCarousel, 100);
+                        }
+                    }
+                    
+                    // Close mobile menu if open
+                    if (mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Calendly Modal
+        const calendlyModal = document.getElementById('calendlyModal');
+        const calendlyModalClose = document.getElementById('calendlyModalClose');
+        const openCalendlyBtns = document.querySelectorAll('#openCalendlyModal, #servicesCalendlyBtn, #contactCalendlyBtn, #bookingPageCalendlyBtn, #heroBookingBtn');
+        
+        // Open Calendly Modal
+        openCalendlyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (btn.id === 'heroBookingBtn') {
+                    // Hero booking button navigates to booking page
+                    document.querySelector('nav a[href="#booking"]').click();
+                    return;
+                }
+                
+                e.preventDefault();
+                calendlyModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Initialize Calendly widget when modal opens
+                if (typeof Calendly !== 'undefined') {
+                    Calendly.initInlineWidget({
+                        url: 'https://calendly.com/alaabmd28/barber-appointment-45min',
+                        parentElement: document.querySelector('.calendly-inline-widget')
+                    });
+                }
+            });
+        });
+
+        // Close Calendly Modal
+        calendlyModalClose.addEventListener('click', () => {
+            calendlyModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        calendlyModal.addEventListener('click', (e) => {
+            if (e.target === calendlyModal) {
+                calendlyModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Scroll Animation System
+        const animateOnScroll = () => {
+            const animatedElements = document.querySelectorAll(
+                '.book-appointment-content, .section-title, .feature-card, .micro-text, ' +
+                '.services-intro, .service-card, .price-note, .services-cta, ' +
+                '.rating-display, .review-item, .contact-info, .contact-item, ' +
+                '.contact-note, .contact-cta, .map-container, .booking-intro, ' +
+                '.booking-info, .booking-step, .booking-features, .booking-widget, .booking-cta'
+            );
+
+            animatedElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight * 0.85;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        };
+
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            
+            // Initialize home page animations
+            const bookAppointmentContent = document.getElementById('bookAppointmentContent');
+            const whyChooseTitle = document.getElementById('whyChooseTitle');
+            if (bookAppointmentContent) bookAppointmentContent.classList.add('visible');
+            if (whyChooseTitle) whyChooseTitle.classList.add('visible');
+        });
+
+        // Trigger animations on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Reviews Carousel
+        const reviewsTrack = document.getElementById('reviewsTrack');
+        const prevBtn = document.getElementById('prevReview');
+        const nextBtn = document.getElementById('nextReview');
+        let currentReview = 0;
+        const totalReviews = document.querySelectorAll('.review-item').length;
+        let reviewInterval;
+
+        function updateReviewsCarousel() {
+            if (!reviewsTrack) return;
+            const width = reviewsTrack.clientWidth;
+            reviewsTrack.style.transform = `translateX(-${currentReview * 100}%)`;
+            
+            // Update visibility of review items
+            document.querySelectorAll('.review-item').forEach((item, index) => {
+                if (index === currentReview) {
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+        }
+        
+        if (prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentReview = (currentReview + 1) % totalReviews;
+                updateReviewsCarousel();
+                resetReviewInterval();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                currentReview = (currentReview - 1 + totalReviews) % totalReviews;
+                updateReviewsCarousel();
+                resetReviewInterval();
+            });
+
+            // Auto-advance reviews every 5 seconds
+            function startReviewInterval() {
+                reviewInterval = setInterval(() => {
+                    currentReview = (currentReview + 1) % totalReviews;
+                    updateReviewsCarousel();
+                }, 5000);
+            }
+            
+            function resetReviewInterval() {
+                clearInterval(reviewInterval);
+                startReviewInterval();
+            }
+            
+            startReviewInterval();
+            
+            // Initialize reviews carousel
+            updateReviewsCarousel();
+        }
+
+        // Show home page by default
+        document.getElementById('home').style.display = 'block';
+
+        // Initialize sticky booking button
+        setTimeout(() => {
+            if (window.scrollY > 500) {
+                stickyBookingBtn.classList.add('visible');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
